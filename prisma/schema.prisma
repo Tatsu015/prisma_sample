@@ -11,13 +11,14 @@ datasource db {
 }
 
 model Task {
-  id      Int      @id @default(autoincrement())
+  id      Int     @id @default(autoincrement())
   name    String
-  project Project?
+  project Project @relation(fields: [pid], references: [id])
+  pid     Int
 }
 
 model Project {
-  task   Task   @relation(fields: [taskID], references: [id])
-  taskID Int    @unique
-  name   String
+  id    Int    @id @default(autoincrement())
+  name  String
+  tasks Task[]
 }
