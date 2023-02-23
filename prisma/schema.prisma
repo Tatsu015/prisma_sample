@@ -13,7 +13,7 @@ datasource db {
 model Task {
   id      Int      @id @default(autoincrement())
   name    String
-  Project Project?
+  project Project?
 }
 
 model Project {
