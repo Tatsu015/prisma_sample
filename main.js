@@ -1,25 +1,15 @@
 const { PrismaClient } = require("@prisma/client");
-const moment = require('moment');
 
-async function create(){
-    const prisma = new PrismaClient();
-    const currentTime = moment();
+const prisma = new PrismaClient()
 
-    await prisma.project.create({
-        data:{
-            tasks:{
-                create:[
-                    {name:currentTime.format("YYYYMMDDHHmmss")},
-                ]
-            },
-            name:'testask'
-        }
-    })
-}
-
-
-function main(){
-    create();
+async function main() {
+    console.log('start main')
 }
 
 main()
+  .catch(e => {
+    throw e
+  })
+  .finally(async () => {
+    await prisma.$disconnect()
+  })
