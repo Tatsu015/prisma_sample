@@ -5,21 +5,12 @@ const prisma = new PrismaClient()
 async function main() {
     console.log('start main')
     
-    // await prisma.user.create({
-    //     data:{
-    //         email:"alice@prisma.io"
-    //     }
-    // })
-    await prisma.user.update({
-        where:{
-            email:'alice@prisma.io'
-        },
+    const result = await prisma.post.create({
         data:{
-            name:'Alice'
+            title:"Hello World"
         }
     })
-    const users = await prisma.user.findMany()
-    console.log(users);
+    console.log(result)
 }
 
 main()
